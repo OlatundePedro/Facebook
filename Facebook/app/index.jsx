@@ -5,28 +5,46 @@ import {
   TouchableOpacity,
   ScrollView,
   View,
+  Pressable,
+  Switch,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
-
-const inputStyle = {
-  borderWidth: 1,
-  borderColor: "#dddfe2",
-  borderRadius: 6,
-  paddingHorizontal: 14,
-  paddingVertical: 12,
-  fontSize: 13,
-  color: "#1c1e21",
-  marginBottom: 12,
-  backgroundColor: "#f5f6f7",
-};
+import { useState } from "react";
+import { router } from "expo-router";
 
 export default function Index() {
+  
+  const [theme, setTheme] = useState("B");
+
+  const isDark = theme === "B";
+
+  const inputStyle = {
+    borderWidth: 1,
+    borderColor: isDark ? "#4a90d9" : "#dddfe2",
+    borderRadius: 6,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    fontSize: 13,
+    color: isDark ? "#05070a" : "#1c1e21",
+    marginBottom: 12,
+    backgroundColor: isDark ? "#FFFF" : "#f5f6f7",
+  }; 
   return (
     <>
       <Stack.Screen options={{ headerShown: false }} />
-      <SafeAreaView style={{ flex: 1, backgroundColor: "#0082FB" }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: isDark ? '#1877F2':'#ffff' }}>
         <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 40 }}>
+          
+           <View>
+            <Switch value={isDark}
+              onValueChange={() => setTheme(isDark ? "W" : "B")} 
+              style={{
+                alignSelf: "flex-end",
+              }}
+            />
+          </View>
+           
           <View
             style={{ alignItems: "center", marginBottom: 32, marginTop: 50 }}
           >
@@ -53,6 +71,7 @@ export default function Index() {
             style={inputStyle}
             placeholder="First name"
             placeholderTextColor="#b2b7c5"
+            
           />
           <TextInput
             style={inputStyle}
@@ -66,7 +85,7 @@ export default function Index() {
           />
           <TextInput
             style={inputStyle}
-            placeholder="Email address"
+            placeholder="Mobile Number or Email"
             placeholderTextColor="#b2b7c5"
           />
           <TextInput
@@ -74,30 +93,54 @@ export default function Index() {
             placeholder="Password"
             placeholderTextColor="#b2b7c5"
           />
+          <TextInput
+            style={inputStyle}
+            placeholder="Confirm Password"
+            placeholderTextColor="#b2b7c5"
+          />
 
-          <Text
+          <View
             style={{
-              fontSize: 12,
-              color: "#444343",
-              textAlign: "center",
-              marginVertical: 16,
-              lineHeight: 18,
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              marginVertical: '16',
             }}
           >
+            <Text style={{ fontSize: 12, color: isDark ?"#FFFF" : "#050505  ", lineHeight: 18 }}>
             By clicking Sign Up, you agree to our{" "}
-            <Text style={{ color: "#FFFF" }}>Terms, Privacy Policy</Text>, and{" "}
-            <Text style={{ color: "#FFFF" }}>Cookies Policy</Text>.
-          </Text>
+            </Text>
+
+            <TouchableOpacity>
+            <Text style=
+            {{ fontSize: 12, color: isDark ?"#050505" : "#1877f2", lineHeight: 18 }}>Terms,</Text>
+            </TouchableOpacity>
+
+            <Text style={{ fontSize: 12, color: isDark ?"#050505" : "#1877f2", lineHeight: 18 }}>{' '}</Text>
+            
+            <TouchableOpacity>
+            <Text style={{ fontSize: 12, color: isDark ?"#050505" : "#1877f2", lineHeight: 18 }}>Privacy Policy,</Text>
+            </TouchableOpacity>
+
+            <Text style={{ fontSize: 12, color: isDark ?"#FFFF" : "#050505" , lineHeight: 18}}>{' and'}</Text>
+
+            <TouchableOpacity>
+            <Text style={{ fontSize: 12, color: isDark ?"#050505" : "#1877f2", lineHeight: 18 }}>{' '}Cookies Policy</Text>
+            </TouchableOpacity>
+            
+            <Text style={{ fontSize: 12, color: isDark ?"#FFFF" : "#1877f2", lineHeight: 18 }}></Text>
+            </View>
+
 
           <TouchableOpacity
             style={{
-              backgroundColor: "#FFFF",
+              backgroundColor: isDark ?"#ffff" : "#1877f2" ,
               paddingVertical: 13,
               alignItems: "center",
               borderRadius: 9,
             }}
           >
-            <Text style={{ color: "#1877F2", fontWeight: "600", fontSize: 11 }}>
+            <Text style={{ color: isDark ?"#1877f2" : "#ffff" , fontWeight: "600", fontSize: 11 }}>
               Sign Up
             </Text>
           </TouchableOpacity>
@@ -115,13 +158,25 @@ export default function Index() {
             </Text>
             <TouchableOpacity>
               <Text
-                style={{ color: "#ffffff", fontWeight: "600", fontSize: 11 }}
+                style={{ color: isDark ?"#ffff" : "#1877f2", fontWeight: "600", fontSize: 11 }}
               >
                 Log in
               </Text>
             </TouchableOpacity>
           </View>
-          
+
+          <View
+              style={{
+              flexDirection: "row",
+              justifyContent: "center",
+              alignItems: "center",
+              marginTop: 50,
+            }}
+          >
+            <Text style={{ fontSize: 13, color: "#bebaba" }}>
+            Pedro© 2026
+            </Text>
+          </View>      
         </ScrollView>
       </SafeAreaView>
     </>
