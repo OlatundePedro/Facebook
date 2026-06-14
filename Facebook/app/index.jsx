@@ -11,7 +11,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
 import { useState } from "react";
-import { router } from "expo-router";
+
 
 export default function Index() {
   
@@ -112,8 +112,7 @@ export default function Index() {
             </Text>
 
             <TouchableOpacity>
-            <Text style=
-            {{ fontSize: 12, color: isDark ?"#050505" : "#1877f2", lineHeight: 18 }}>Terms,</Text>
+            <Text style={{ fontSize: 12, color: isDark ?"#050505" : "#1877f2", lineHeight: 18 }}>Terms,</Text>
             </TouchableOpacity>
 
             <Text style={{ fontSize: 12, color: isDark ?"#050505" : "#1877f2", lineHeight: 18 }}>{' '}</Text>
